@@ -4,12 +4,14 @@ const isUrlValid = require('url-validation')
 const redis = require('redis')
 
 const { promisify } = require("util")
+
 // Connecting to redis -----------------------------------------------------------
 const redisClient = redis.createClient(
-    18708,
-    "redis-18708.c264.ap-south-1-1.ec2.cloud.redislabs.com", { no_ready_check: true }
+    19634,
+    "redis-19634.c264.ap-south-1-1.ec2.cloud.redislabs.com", { no_ready_check: true }
+
 );
-redisClient.auth("c4wumzAqu1aqeSjGmtoGJ65S3kUkwtdT", function (err) {
+redisClient.auth("PfAd331Moph13mEzK4AjK2laBpjMn6Vx", function (err) {
     if (err) throw err;
 });
 redisClient.on("connect", async function () {
@@ -106,3 +108,33 @@ const getUrl = async function (req, res) {
 }
 
 module.exports = { urlShortener, getUrl }
+
+
+
+
+function solution(a){
+
+    function fib(a){
+        if(a<=1)
+        return a
+        
+        let reduce = a-2
+
+        return fib(a-1) + fib(reduce)
+
+    }
+    return fib(a)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
