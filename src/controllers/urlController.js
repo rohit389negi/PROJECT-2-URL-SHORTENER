@@ -44,6 +44,11 @@ const urlShortener = async function (req, res) {
             res.status(400).send({ status: false, message: "longUrl is not valid, Please provide valid url" })
             return
         }
+        let cachedUrlData = await GET_ASYNC(`${longUrl}`)
+        if (cachedUrlData) {
+            const urlDetails = JSON.parse(cachedUrlData)
+            return res.status(200).send({ satus: true, data: urlDetails })
+        }
         const isShortUrlAlreadyAvailable = await urlModel.findOne({ longUrl })
         if (isShortUrlAlreadyAvailable) {
             const { longUrl, shortUrl, urlCode } = isShortUrlAlreadyAvailable
